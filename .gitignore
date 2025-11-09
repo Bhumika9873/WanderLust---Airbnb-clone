@@ -1,0 +1,8 @@
+# Ignore environment file
+.env
+
+# Ignore dependencies
+node_modules/
+
+# ✅ Allow views folder (don’t ignore)
+!views/
