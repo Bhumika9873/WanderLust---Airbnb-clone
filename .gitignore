@@ -6,3 +6,4 @@ node_modules/
 
 # ✅ Allow views folder (don’t ignore)
 !views/
+
