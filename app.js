@@ -31,7 +31,8 @@ main()
 });
 
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(process.env.ATLASDB_URL);
+        console.log("DB Connected");
 }
 
 app.set("view engine", "ejs");
