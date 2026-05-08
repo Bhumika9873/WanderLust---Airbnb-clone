@@ -19,7 +19,6 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const userRouter = require("./Routes/user.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const dbUrl = process.env.ATLASDB_URL;
 
 main() 
@@ -50,8 +49,8 @@ const store = MongoStore.create({
     touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
-    console.log("ERROR in MONGO SESSION STORE",err)
+store.on("error", (err) => {
+    console.log("ERROR in MONGO SESSION STORE", err)
 });
 
 const sessionOptions = {
@@ -98,12 +97,14 @@ app.all(/.*/, (req,res,next)=> {
 
 app.use((err, req, res, next)=> {
     let { statusCode = 500, message = "Something went wrong!"} = err;
-    res.status(statusCode).render("listings/error", {message: err});
+    res.status(statusCode).render("listings/error", {message});
     //res.status(statusCode).send(message);
 });
 
-app.listen(8080, ()=> {
-    console.log("Server is listening to the port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, ()=> {
+    console.log(`Server is listening on port ${PORT}`);
 });
 
 app.use((err, req, res, next) => {
