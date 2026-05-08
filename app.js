@@ -106,8 +106,8 @@ app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
 
-app.use((err, req, res, next) => {
-    console.error("🔥 Error caught in middleware:");
-    console.error(err.stack);
-    res.status(err.status || 500).send(err.message || "Something went wrong!");
-});
+// app.use((err, req, res, next) => {
+//     console.error("🔥 Error caught in middleware:");
+//     console.error(err.stack);
+//     res.status(err.status || 500).send(err.message || "Something went wrong!");
+// });
