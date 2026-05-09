@@ -23,6 +23,10 @@ const User = require("./models/user.js");
 
 const dbUrl = process.env.ATLASDB_URL;
 
+// added for error checking
+console.log("SECRET => ", process.env.SECRET);
+console.log("ATLASDB_URL => ", process.env.ATLASDB_URL);
+
 main()
 .then(() => {
     console.log("Connected to DB");
@@ -44,6 +48,12 @@ app.engine('ejs', ejsMate);
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+
+// added for error checking
+app.use((req, res, next) => {
+    console.log("Route Hit => ", req.path);
+    next();
+});
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -94,10 +104,14 @@ app.all(/.*/, (req, res, next) => {
     next(new expressErrors(404, "Page not found!"));
 });
 
+// added for error checking
 app.use((err, req, res, next) => {
+    console.error("FULL ERROR => ");
+    console.error(err);
+
     let { statusCode = 500, message = "Something went wrong!" } = err;
+
     res.status(statusCode).render("listings/error", { message });
-    // res.status(statusCode).send(message);
 });
 
 const PORT = process.env.PORT || 8080;
@@ -105,9 +119,3 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
-
-// app.use((err, req, res, next) => {
-//     console.error("🔥 Error caught in middleware:");
-//     console.error(err.stack);
-//     res.status(err.status || 500).send(err.message || "Something went wrong!");
-// });
