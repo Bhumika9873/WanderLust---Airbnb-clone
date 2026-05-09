@@ -45,6 +45,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
+// added for error checking
+app.get("/favicon.ico", (req, res) => {
+    res.status(204);
+});
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
@@ -99,10 +104,10 @@ app.all(/.*/, (req, res, next) => {
     next(new expressErrors(404, "Page not found!"));
 });
 
+// added for error checking
 app.use((err, req, res, next) => {
-    let { statusCode = 500, message = "Something went wrong!" } = err;
-
-    res.status(statusCode).render("listings/error", { message });
+    console.error(err.stack);
+    res.status(500).send(err.stack);
 });
 
 const PORT = process.env.PORT || 8080;
