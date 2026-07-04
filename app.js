@@ -22,7 +22,8 @@ const expressErrors = require("./utils/expressErrors.js");
 const User = require("./models/user.js");
 
 const dbUrl = process.env.ATLASDB_URL;
-
+console.log("ATLASDB_URL =", process.env.ATLASDB_URL);
+console.log("NODE_ENV =", process.env.NODE_ENV);
 main()
 .then(() => {
     console.log("Connected to DB");
