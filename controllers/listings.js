@@ -42,6 +42,7 @@ if(!listing){
     req.flash("error", "Listing Does Not Exist");
  return   res.redirect("/listings");
 }
+console.log("Owner =", listing.owner);
 res.render("./listings/show.ejs",{listing});
 
 };
