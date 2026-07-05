@@ -37,12 +37,13 @@ const initDB = async () => {
       })
       .send();
         console.log(obj.location, response.body.features);
-
-    listings.push({
-      ...obj,
-      owner: new mongoose.Types.ObjectId("68fe64450653066a81d94291"),
-      geometry: response.body.features[0].geometry,
-    });
+    
+        listings.push({
+  ...obj,
+  owner: new mongoose.Types.ObjectId("68fe64450653066a81d94291"),
+  category: "Trending",
+  geometry: response.body.features[0].geometry,
+  });
   }
 
   await Listing.insertMany(listings);
