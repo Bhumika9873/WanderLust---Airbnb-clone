@@ -30,6 +30,7 @@ const initDB = async () => {
   const listings = [];
 
   for (let obj of initData.data) {
+    console.log(obj.location, response.body.features);
     const response = await geocodingClient
       .forwardGeocode({
         query: obj.location,
