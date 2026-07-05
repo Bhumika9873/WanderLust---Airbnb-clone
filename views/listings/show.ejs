@@ -2,7 +2,7 @@
 
 <script>
 const mapToken = "<%= process.env.MAP_TOKEN %>";
-const listing = '<%- JSON.stringify(listing) %>';
+const listing = <%- JSON.stringify(listing) %>;
 </script>
 
 <div class="row">
@@ -131,7 +131,7 @@ const listing = '<%- JSON.stringify(listing) %>';
 
     </div>
 
-    <% if(listing.geometry && listing.geometry.coordinates) { %>
+    <% if(listing.geometry && listing.geometry.coordinates.length === 2) { %>
 
     <div class="col-8 offset-3 mb-3">
         <h3>Where You'll be</h3>
@@ -141,3 +141,5 @@ const listing = '<%- JSON.stringify(listing) %>';
     <script src="/js/map.js"></script>
 
     <% } %>
+
+</div>
