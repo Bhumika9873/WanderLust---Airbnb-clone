@@ -1,5 +1,4 @@
-console.log("Map JS Loaded");
-
+console.log(typeof listing);
 console.log("listing =", listing);
 console.log("geometry =", listing.geometry);
 console.log("coordinates =", listing.geometry.coordinates);
