@@ -1,123 +1,437 @@
-<% layout("/layouts/boilerplate") %> <%= success %>
-    <!--<h3>All listings</h3>-->
-    <!--<form method="GET" action="/listings/new">
-        <button>Create new Listings</button>
-    </form>-->
-     <style>
-        #filters {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .filter {
-            text-align: center;
-            margin-right: 2rem;
-            margin-top: 2rem;
-            opacity: 0.8;
-        }
+<% layout("/layouts/boilerplate") %>
 
-        .filter:hover{
-            opacity: 1;
-            cursor: pointer;
-        }
-        .filter p {
-            font-size: 0.8rem;
+<!-- ================= HERO SECTION ================= -->
 
-        }
-        .tax-info {
-            display: none;
-        }
-        .tax-toggle {
-            border: 1px solid black;
-            border-radius: 1rem;
-            height: 3.25rem;
-            padding: 1rem;
-            margin-left: 2rem;
-            display: flex;
-            align-items: center;
-        }
-     </style>
+<section class="hero fade-up">
+
+    <div class="hero-content">
+
+        <span class="badge-green">
+            🌍 Explore • Stay • Travel
+        </span>
+
+        <h1 class="mt-4">
+            Find Your Perfect <br>
+            Place To Stay
+        </h1>
+
+        <p class="mt-3">
+            Discover luxury villas, mountain cabins, beach houses and unique
+            stays around the world.
+        </p>
+
+        <a href="#listings" class="primary-btn text-decoration-none mt-4 d-inline-block">
+            Explore Now
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ================= FILTERS ================= -->
+
+<div class="d-flex justify-content-between align-items-center flex-wrap mt-5">
 
     <div id="filters">
-        <div class="filter">
-            <div><i class="fa-solid fa-fire"></i></div>
-            <p>Trending</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-fire"></i>
+            <span>Trending</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-bed"></i></div>
-             <p>Rooms</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-bed"></i>
+            <span>Rooms</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-fire"></i></div>
-             <p>Rooms</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-mountain-city"></i>
+            <span>Cities</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-mountain-city"></i></i></div>
-             <p>Iconic cities</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-mountain-sun"></i>
+            <span>Mountains</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-mountain-sun"></i></div>
-             <p>Mountains</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-chess-rook"></i>
+            <span>Castles</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-chess-rook"></i></div>
-             <p>Castles</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-person-swimming"></i>
+            <span>Pools</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-person-swimming"></i></div>
-             <p>Amazing pools</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-campground"></i>
+            <span>Camping</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-campground"></i></div>
-             <p>Camping</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-cow"></i>
+            <span>Farms</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-cow"></i></div>
-             <p>Farms</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-snowflake"></i>
+            <span>Arctic</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-snowflake"></i></div>
-             <p>Arctic pool</p>
+
+        <div class="category-chip filter">
+            <i class="fa-solid fa-igloo"></i>
+            <span>Domes</span>
         </div>
-        <div class="filter">
-             <div><i class="fa-solid fa-igloo"></i></div>
-             <p>Domes</p>
-        </div>
-        <div class="tax-toggle">
-        <div class="form-check-reverse form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
-        </div>
-        </div>
+
     </div>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-     <% for(let listing of allListings) { %>
-        <a href="/listings/<%= listing._id %>" class="listing-link">
-    <div class="card col listing-card" >
-        <div class="card-img-overlay"></div>
-    <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem">
+    <div class="tax-toggle glass-card mt-3 mt-lg-0">
 
-  <div class="card-body">
-    <p class="card-text"> <b><%= listing.title %></b> <br/> &#8377; <%= listing.price.toLocaleString("en-IN") %> / night<i class="tax-info"> &nbsp; &nbsp; +18% GST</i></p>
-  </div>
+        <div class="form-check form-switch">
+
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="flexSwitchCheckDefault">
+
+            <label
+                class="form-check-label"
+                for="flexSwitchCheckDefault">
+
+                Display total after taxes
+
+            </label>
+
+        </div>
+
+    </div>
+
 </div>
-    </a>
-    <% } %>
+
+<!-- ================= POPULAR STAYS ================= -->
+
+<section id="listings" class="mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+
+        <div>
+
+            <h2 class="section-title text-start mb-1">
+                Popular Stays
+            </h2>
+
+            <p class="text-muted">
+                Handpicked destinations just for you.
+            </p>
+
+        </div>
+
     </div>
-    
-    <script>
-        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
-        taxSwitch.addEventListener("click", () => {
-           let taxInfo = document.getElementsByClassName("tax-info");
-           for (info of taxInfo) {
-            if(info.style.display != "inline"){
-                info.style.display = "inline";
-            }else {
-                info.style.display = "none";
-            }
-           }
-        });
-    </script>
-     
-    
+
+    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
+
+<% for(let listing of allListings){ %>
+
+<div class="col">
+
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+
+        <div class="card listing-card shadow-hover fade-up">
+
+            <div class="position-relative zoom">
+
+                <img
+                    src="<%= listing.image.url %>"
+                    class="card-img-top"
+                    alt="listing_image">
+
+                <div class="card-img-overlay"></div>
+
+                <!-- Wishlist -->
+
+                <button
+                    class="btn position-absolute top-0 end-0 m-3 bg-white rounded-circle shadow"
+                    style="width:45px;height:45px;">
+
+                    <i class="fa-regular fa-heart text-danger"></i>
+
+                </button>
+
+                <!-- Category -->
+
+                <% if(listing.category){ %>
+
+                <span
+                    class="badge bg-success position-absolute bottom-0 start-0 m-3 px-3 py-2 rounded-pill">
+
+                    <%= listing.category %>
+
+                </span>
+
+                <% } %>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+
+                        <h5 class="card-title mb-1">
+
+                            <%= listing.title %>
+
+                        </h5>
+
+                        <p class="text-muted mb-2">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <%= listing.location %>
+
+                        </p>
+
+                    </div>
+
+                    <div class="text-end">
+
+                        <span class="badge bg-warning text-dark rounded-pill">
+
+                            ⭐ 4.8
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-3">
+
+                    <div>
+
+                        <span class="price">
+
+                            ₹ <%= listing.price.toLocaleString("en-IN") %>
+
+                        </span>
+
+                        <small class="text-muted">
+
+                            / night
+
+                        </small>
+
+                        <div class="tax-info text-success">
+
+                            +18% GST
+
+                        </div>
+
+                    </div>
+
+                    <button class="primary-btn">
+
+                        View
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </a>
+
+</div>
+
+<% } %>
+
+</div>
+
+</section>
+
+<script>
+
+const taxSwitch=document.getElementById("flexSwitchCheckDefault");
+
+taxSwitch.addEventListener("click",()=>{
+
+const taxInfo=document.querySelectorAll(".tax-info");
+
+taxInfo.forEach(info=>{
+
+if(info.style.display==="inline"){
+
+info.style.display="none";
+
+}
+
+else{
+
+info.style.display="inline";
+
+}
+
+});
+
+});
+
+</script>
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="py-5 mt-5">
+
+    <div class="text-center mb-5">
+
+        <h2 class="section-title">Why Choose WanderStay?</h2>
+
+        <p class="text-muted">
+            We make your travel experience memorable.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="glass-card p-4 h-100 text-center shadow-hover">
+
+                <i class="fa-solid fa-earth-americas fa-3x text-success mb-3"></i>
+
+                <h5>Worldwide</h5>
+
+                <p class="text-muted">
+                    Discover amazing places across the globe.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="glass-card p-4 h-100 text-center shadow-hover">
+
+                <i class="fa-solid fa-shield-heart fa-3x text-success mb-3"></i>
+
+                <h5>Safe Booking</h5>
+
+                <p class="text-muted">
+                    Secure payments and trusted hosts.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="glass-card p-4 h-100 text-center shadow-hover">
+
+                <i class="fa-solid fa-tags fa-3x text-success mb-3"></i>
+
+                <h5>Best Prices</h5>
+
+                <p class="text-muted">
+                    Affordable luxury stays for every traveller.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="glass-card p-4 h-100 text-center shadow-hover">
+
+                <i class="fa-solid fa-headset fa-3x text-success mb-3"></i>
+
+                <h5>24×7 Support</h5>
+
+                <p class="text-muted">
+                    We're always here whenever you need us.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="py-5">
+
+    <div class="row text-center">
+
+        <div class="col-md-3">
+
+            <h2 class="text-success fw-bold">20K+</h2>
+
+            <p class="text-muted">Happy Guests</p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <h2 class="text-success fw-bold">500+</h2>
+
+            <p class="text-muted">Destinations</p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <h2 class="text-success fw-bold">8K+</h2>
+
+            <p class="text-muted">Verified Hosts</p>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <h2 class="text-success fw-bold">4.9★</h2>
+
+            <p class="text-muted">Average Rating</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+
+<section class="hero mt-5 mb-5" style="min-height:320px;">
+
+    <div class="hero-content">
+
+        <h2>Get Travel Inspiration</h2>
+
+        <p class="mb-4">
+            Subscribe to receive exclusive travel deals and destination ideas.
+        </p>
+
+        <div class="d-flex justify-content-center flex-wrap gap-2">
+
+            <input
+                type="email"
+                class="form-control"
+                placeholder="Enter your email"
+                style="max-width:350px;">
+
+            <button class="primary-btn">
+                Subscribe
+            </button>
+
+        </div>
+
+    </div>
+
+</section>

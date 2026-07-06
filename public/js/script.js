@@ -1,18 +1,70 @@
 (() => {
-  'use strict'
+  "use strict";
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+  // ================= FORM VALIDATION =================
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+  const forms = document.querySelectorAll(".needs-validation");
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
+  Array.from(forms).forEach((form) => {
+    form.addEventListener(
+      "submit",
+      (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+
+  // ================= CARD HOVER =================
+
+  document.querySelectorAll(".listing-card").forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-10px)";
+      card.style.transition = ".35s";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(0)";
+    });
+  });
+
+  // ================= HEART ANIMATION =================
+
+  document.querySelectorAll(".fa-heart").forEach((heart) => {
+    heart.addEventListener("click", () => {
+      heart.classList.toggle("fa-solid");
+      heart.classList.toggle("fa-regular");
+
+      heart.style.transform = "scale(1.3)";
+
+      setTimeout(() => {
+        heart.style.transform = "scale(1)";
+      }, 200);
+    });
+  });
+
+  // ================= SCROLL ANIMATION =================
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show-element");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll(".fade-up").forEach((el) => {
+    observer.observe(el);
+  });
+
+})();
