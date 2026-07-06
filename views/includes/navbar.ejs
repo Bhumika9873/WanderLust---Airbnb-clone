@@ -1,109 +1,108 @@
-<style>
-  .search-btn {
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
-  }
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
 
-  .search-btn:hover {
-    background-color: #fe424d;
-    color: #fff;
-  }
+    <div class="container">
 
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
+        <!-- Logo -->
 
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
-  }
-</style>
+        <a class="navbar-brand d-flex align-items-center" href="/listings">
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
+            <div class="logo-circle">
+                <i class="fa-solid fa-earth-americas"></i>
+            </div>
 
-    <!-- Logo -->
-    <a class="navbar-brand" href="/listings">
-      <i class="fa-regular fa-compass"></i>
-    </a>
+            <span class="logo-text ms-2">
+                Wander<span>Stay</span>
+            </span>
 
-    <!-- Mobile Toggle -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar Content -->
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-      <!-- Left Links -->
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
-
-      <!-- Search Bar -->
-      <div class="navbar-nav ms-auto">
-        <form
-          action="/listings/search"
-          method="GET"
-          class="d-flex"
-          role="search"
-        >
-          <input
-            class="form-control me-2 search-inp"
-            type="search"
-            name="query"
-            placeholder="Search destinations"
-            aria-label="search"
-          >
-
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Search
-          </button>
-        </form>
-      </div>
-
-      <!-- Right Links -->
-      <div class="navbar-nav ms-auto">
-
-        <a class="nav-link" href="/listings/new">
-          Airbnb your home
         </a>
 
-        <% if(typeof locals !== "undefined" && !locals.currUser) { %>
+        <!-- Mobile Toggle -->
 
-          <a class="nav-link" href="/signup">
-            <b>Sign Up</b>
-          </a>
+        <button
+            class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup">
 
-          <a class="nav-link" href="/login">
-            <b>Login</b>
-          </a>
+            <i class="fa-solid fa-bars"></i>
 
-        <% } %>
+        </button>
 
-        <% if(typeof locals !== "undefined" && locals.currUser) { %>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-          <a class="nav-link" href="/logout">
-            <b>Log Out</b>
-          </a>
+            <!-- Left Menu -->
 
-        <% } %>
+            <ul class="navbar-nav mx-auto align-items-lg-center">
 
-      </div>
+                <li class="nav-item">
+                    <a class="nav-link active-nav" href="/listings">
+                        Explore
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/listings/new">
+                        Become Host
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Search -->
+
+            <form
+                action="/listings/search"
+                method="GET"
+                class="search-box d-flex">
+
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+                <input
+                    type="search"
+                    name="query"
+                    placeholder="Search destinations..."
+                    class="search-input">
+
+                <button class="search-btn">
+
+                    Search
+
+                </button>
+
+            </form>
+
+            <!-- Right Side -->
+
+            <div class="navbar-nav ms-lg-4 align-items-lg-center">
+
+                <% if(!currUser){ %>
+
+                    <a class="nav-link nav-btn" href="/login">
+
+                        Login
+
+                    </a>
+
+                    <a class="signup-btn" href="/signup">
+
+                        Sign Up
+
+                    </a>
+
+                <% } else { %>
+
+                    <a class="nav-link nav-btn" href="/logout">
+
+                        Logout
+
+                    </a>
+
+                <% } %>
+
+            </div>
+
+        </div>
 
     </div>
-  </div>
+
 </nav>
