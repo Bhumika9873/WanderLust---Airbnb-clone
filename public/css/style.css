@@ -90,15 +90,17 @@ body{
 }
 
 .search-icon{
-    padding:0 14px;
+    margin-left:16px;
+    margin-right:12px;
     color:#777;
+    font-size:15px;
 }
 
 .search-input{
     border:none;
     outline:none;
     width:220px;
-    padding:10px 0;
+    padding-left:4px;
     background:transparent;
 }
 
@@ -133,6 +135,20 @@ body{
 
 .nav-btn{
     font-weight:600;
+}
+
+.tax-navbar{
+    white-space:nowrap;
+    font-size:.9rem;
+}
+
+.tax-navbar .form-check-label{
+    font-weight:500;
+    color:#555;
+}
+
+.tax-navbar .form-check-input{
+    cursor:pointer;
 }
 
 /* ===========================
