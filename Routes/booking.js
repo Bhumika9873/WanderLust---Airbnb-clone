@@ -15,8 +15,7 @@ router.get("/:id", isLoggedIn, async (req, res) => {
         return res.redirect("/listings");
     }
 
-    res.render("bookings/new", { listing });
-});
+res.render("bookings/booking", { listing });});
 
 // Save Booking
 router.post("/:id", isLoggedIn, async (req, res) => {
