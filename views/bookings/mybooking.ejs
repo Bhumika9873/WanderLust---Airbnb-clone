@@ -1,0 +1,77 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5">
+
+    <h2 class="fw-bold mb-4">My Bookings</h2>
+
+    <% if(bookings.length === 0){ %>
+
+        <div class="alert alert-info">
+            You haven't booked any listing yet.
+        </div>
+
+    <% } else { %>
+
+        <div class="row g-4">
+
+            <% bookings.forEach(booking => { %>
+
+                <div class="col-md-6">
+
+                    <div class="glass-card p-4">
+
+                        <img
+                            src="<%= booking.listing.image.url %>"
+                            class="img-fluid rounded-4 mb-3"
+                            style="height:220px;width:100%;object-fit:cover;">
+
+                        <h4><%= booking.listing.title %></h4>
+
+                        <p class="text-muted">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <%= booking.listing.location %>,
+                            <%= booking.listing.country %>
+                        </p>
+
+                        <hr>
+
+                        <p>
+                            <strong>Check In:</strong>
+                            <%= booking.checkIn.toDateString() %>
+                        </p>
+
+                        <p>
+                            <strong>Check Out:</strong>
+                            <%= booking.checkOut.toDateString() %>
+                        </p>
+
+                        <p>
+                            <strong>Guests:</strong>
+                            <%= booking.guests %>
+                        </p>
+
+                        <h5 class="text-success">
+                            ₹ <%= booking.totalPrice.toLocaleString("en-IN") %>
+                        </h5>
+
+                        <form
+                            action="/book/cancel/<%= booking._id %>"
+                            method="POST">
+
+                            <button class="btn btn-danger w-100 mt-3">
+                                Cancel Booking
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>
