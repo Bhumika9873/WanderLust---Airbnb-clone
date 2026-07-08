@@ -18,6 +18,7 @@ const listingRouter = require("./Routes/listing.js");
 const reviewRouter = require("./Routes/review.js");
 const userRouter = require("./Routes/user.js");
 const wishlistRouter = require("./Routes/wishlist");
+const bookingRouter = require("./Routes/booking");
 
 const expressErrors = require("./utils/expressErrors.js");
 const User = require("./models/user.js");
@@ -100,9 +101,11 @@ app.get("/", (req, res) => {
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
-app.use("/wishlist", wishlistRouter);
-app.use("/", userRouter);
 
+app.use("/", userRouter);
+app.use("/wishlist", wishlistRouter);
+
+app.use("/book", bookingRouter);
 app.all(/.*/, (req, res, next) => {
     next(new expressErrors(404, "Page not found!"));
 });

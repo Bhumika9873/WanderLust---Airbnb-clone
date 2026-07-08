@@ -115,11 +115,11 @@ const listing = <%- JSON.stringify(listing) %>;
 
                 <hr>
 
-                <button class="btn btn-success w-100 py-3 rounded-4 fw-bold">
-
-                    Reserve Now
-
-                </button>
+                <a
+                href="/book/<%= listing._id %>"
+                class="btn btn-success w-100 py-3 rounded-4 fw-bold">
+                Reserve Now
+                </a>
 
                 <form action="/wishlist/<%= listing._id %>" method="POST">
                     <button class="btn btn-outline-dark w-100 mt-3 rounded-4 fw-bold">
