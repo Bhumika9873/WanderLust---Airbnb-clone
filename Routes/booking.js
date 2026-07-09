@@ -11,7 +11,9 @@ router.get("/mybookings", isLoggedIn, async (req, res) => {
 
     const bookings = await Booking.find({
         user: req.user._id
-    }).populate("listing");
+    })
+    .populate("listing")
+    .populate("user");
 
     res.render("bookings/mybookings", { bookings });
 
