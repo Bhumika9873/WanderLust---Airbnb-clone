@@ -62,12 +62,18 @@ router.post("/:id", isLoggedIn, async (req, res) => {
     const totalPrice = days * listing.price;
 
     const booking = new Booking({
+
         user: req.user._id,
+        username: req.user.username,
+
         listing: listing._id,
+        listingName: listing.title,
+
         checkIn,
         checkOut,
         guests,
         totalPrice,
+
     });
 
     await booking.save();
