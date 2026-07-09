@@ -68,7 +68,7 @@ router.post("/:id", isLoggedIn, async (req, res) => {
         totalPrice,
     });
 
-    await booking.sve();
+    await booking.save();
 
     req.flash("success", "Booking Confirmed");
 
