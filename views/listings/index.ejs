@@ -1,5 +1,6 @@
 <% console.log("INDEX RENDERED"); %>
 <% layout("/layouts/boilerplate") %>
+
 <!-- ================= HERO SECTION ================= -->
 
 <section class="hero fade-up">
@@ -50,155 +51,123 @@
 
     <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
 
-<% for(let listing of allListings){ %>
+        <% for(let listing of allListings){ %>
 
-<div class="col">
+        <div class="col">
 
-    <a href="/listings/<%= listing._id %>" class="listing-link">
+            <a href="/listings/<%= listing._id %>" class="listing-link">
 
-        <div class="card listing-card shadow-hover fade-up">
+                <div class="card listing-card shadow-hover fade-up">
 
-            <div class="position-relative zoom">
+                    <div class="position-relative zoom">
 
-                <img
-                    src="<%= listing.image.url %>"
-                    class="card-img-top"
-                    alt="listing_image">
+                        <img
+                            src="<%= listing.image.url %>"
+                            class="card-img-top"
+                            alt="listing_image">
 
-                <div class="card-img-overlay"></div>
+                        <div class="card-img-overlay"></div>
 
-                <!-- Wishlist -->
+                        <!-- Wishlist -->
 
-                <button
-                    class="btn position-absolute top-0 end-0 m-3 bg-white rounded-circle shadow"
-                    style="width:45px;height:45px;">
+                        <button
+                            class="btn position-absolute top-0 end-0 m-3 bg-white rounded-circle shadow"
+                            style="width:45px;height:45px;">
 
-                    <i class="fa-regular fa-heart text-danger"></i>
+                            <i class="fa-regular fa-heart text-danger"></i>
 
-                </button>
+                        </button>
 
-                <!-- Category -->
+                        <!-- Category -->
 
-                <% if(listing.category){ %>
+                        <% if(listing.category){ %>
 
-                <span
-                    class="badge bg-success position-absolute bottom-0 start-0 m-3 px-3 py-2 rounded-pill">
+                        <span
+                            class="badge bg-success position-absolute bottom-0 start-0 m-3 px-3 py-2 rounded-pill">
 
-                    <%= listing.category %>
+                            <%= listing.category %>
 
-                </span>
+                        </span>
 
-                <% } %>
+                        <% } %>
 
-            </div>
+                    </div>
 
-            <div class="card-body">
-
-                <div class="d-flex justify-content-between align-items-start">
-
-                    <div>
+                    <div class="card-body">
 
                         <h5 class="card-title mb-1">
-
                             <%= listing.title %>
-
                         </h5>
 
                         <p class="text-muted mb-2">
-
                             <i class="fa-solid fa-location-dot"></i>
-
                             <%= listing.location %>
-
                         </p>
 
-                    </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
 
-                    <div class="text-end">
+                            <div>
 
-                        <span class="badge bg-warning text-dark rounded-pill">
+                                <span class="price">
+                                    ₹ <%= listing.price.toLocaleString("en-IN") %>
+                                </span>
 
-                            ⭐ 4.8
+                                <small class="text-muted">
+                                    / night
+                                </small>
 
-                        </span>
+                                <div class="tax-info text-success">
+                                    +18% GST
+                                </div>
 
-                    </div>
+                            </div>
 
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center mt-3">
-
-                    <div>
-
-                        <span class="price">
-
-                            ₹ <%= listing.price.toLocaleString("en-IN") %>
-
-                        </span>
-
-                        <small class="text-muted">
-
-                            / night
-
-                        </small>
-
-                        <div class="tax-info text-success">
-
-                            +18% GST
+                            <button class="primary-btn">
+                                View
+                            </button>
 
                         </div>
 
                     </div>
 
-                    <button class="primary-btn">
-
-                        View
-
-                    </button>
-
                 </div>
 
-            </div>
+            </a>
 
         </div>
 
-    </a>
+        <% } %>
 
-</div>
-
-<% } %>
-
-</div>
+    </div>
 
 </section>
 
 <script>
 
-const taxSwitch=document.getElementById("flexSwitchCheckDefault");
+const taxSwitch = document.getElementById("flexSwitchCheckDefault");
 
-taxSwitch.addEventListener("click",()=>{
+taxSwitch.addEventListener("click", () => {
 
-const taxInfo=document.querySelectorAll(".tax-info");
+    const taxInfo = document.querySelectorAll(".tax-info");
 
-taxInfo.forEach(info=>{
+    taxInfo.forEach(info => {
 
-if(info.style.display==="inline"){
+        if(info.style.display === "inline"){
 
-info.style.display="none";
+            info.style.display = "none";
 
-}
+        }else{
 
-else{
+            info.style.display = "inline";
 
-info.style.display="inline";
+        }
 
-}
-
-});
+    });
 
 });
 
 </script>
+
 <!-- ================= WHY CHOOSE US ================= -->
 
 <section class="py-4 mt-4">
